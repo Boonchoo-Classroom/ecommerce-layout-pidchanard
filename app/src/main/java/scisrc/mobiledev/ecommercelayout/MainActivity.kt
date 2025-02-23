@@ -7,7 +7,11 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import scisrc.mobiledev.ecommercelayout.databinding.ActivityMainBinding
+import scisrc.mobiledev.ecommercelayout.ui.CartFragment
+import scisrc.mobiledev.ecommercelayout.ui.FavoritesFragment
 import scisrc.mobiledev.ecommercelayout.ui.HomeFragment
+import scisrc.mobiledev.ecommercelayout.ui.ProductFragment
+import scisrc.mobiledev.ecommercelayout.ui.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -44,6 +48,26 @@ class MainActivity : AppCompatActivity() {
                         .replace(R.id.fragment_container, HomeFragment())
                         .commit()
                 }
+                R.id.nav_list -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, ProductFragment())
+                        .commit()
+                }
+                R.id.nav_favorites -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, FavoritesFragment())
+                        .commit()
+                }
+                R.id.nav_cart -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, CartFragment())
+                        .commit()
+                }
+                R.id.nav_profile -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, ProfileFragment())
+                        .commit()
+                }
 
             }
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -54,8 +78,16 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HomeFragment())
+                .replace(R.id.fragment_container, ProductFragment())
+                .replace(R.id.fragment_container, ProfileFragment())
+                .replace(R.id.fragment_container, FavoritesFragment())
+                .replace(R.id.fragment_container, CartFragment())
                 .commit()
             binding.navView.setCheckedItem(R.id.nav_home)
+            binding.navView.setCheckedItem(R.id.nav_list)
+            binding.navView.setCheckedItem(R.id.nav_favorites)
+            binding.navView.setCheckedItem(R.id.nav_cart)
+            binding.navView.setCheckedItem(R.id.nav_profile)
         }
     }
 
